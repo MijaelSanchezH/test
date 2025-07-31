@@ -3,7 +3,8 @@
 const paramsHistograma = new URLSearchParams(window.location.search);
 const nombreEquipoHistograma = paramsHistograma.get("nombre");
 
-fetch(`http://localhost:5000/api/histograma/${nombreEquipoHistograma}`)
+//fetch(`http://localhost:5000/api/histograma/${nombreEquipoHistograma}`)
+fetch(`/api/histograma/${nombreEquipoHistograma}`)
   .then(res => res.json())
   .then(data => {
     const cantidadesPorDia = Array(31).fill(0);

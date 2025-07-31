@@ -6,7 +6,8 @@ var nombre = params.get("nombre");
 document.getElementById("titulo-equipo").textContent += nombre;
 
 // Hacer petición al backend para obtener historial
-fetch(`http://localhost:5000/api/equipo/${nombre}`)
+//fetch(`http://localhost:5000/api/equipo/${nombre}`)
+fetch(`/api/equipo/${nombre}`)
   .then(res => res.json())
   .then(data => {
     const historial = data.historial || [];
