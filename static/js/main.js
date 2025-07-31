@@ -1,5 +1,6 @@
 function cargarDatos(){
-    fetch("http://localhost:5000/api/equipos")
+    //fetch("http://localhost:5000/api/equipos")
+    fetch("/api/equipos")
         .then(response => response.json())
         .then(data => {
             const tabla = document.getElementById("tabla-equipos");
