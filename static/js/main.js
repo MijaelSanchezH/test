@@ -8,10 +8,10 @@ function cargarDatos(){
 
             data.forEach(equipo => {
                 const tr = document.createElement("tr");
-
+                //<td><a href="equipo.html?nombre=${equipo.nombre}">${equipo.nombre}</a></td>    
                 tr.innerHTML = `
                     <td>${equipo.sala}</td>
-                    <td><a href="equipo.html?nombre=${equipo.nombre}">${equipo.nombre}</a></td>
+                    <td><a href="/equipo/${equipo.nombre}">${equipo.nombre}</a></td>
                     <td>${equipo.temperatura}</td>  <!-- ESTA LÍNEA FALTABA -->
                     <td class="${
                         equipo.estado === 'Operativo' ? 'ok' : 

@@ -54,6 +54,10 @@ def histograma(nombre):
 
     return jsonify(resultado)
 
+@app.route("/equipo/<nombre>")
+def equipo(nombre):
+    return render_template("equipo.html")
+
 @app.route("/")
 def home():
     return render_template("index.html")
