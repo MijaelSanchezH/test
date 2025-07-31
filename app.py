@@ -54,7 +54,7 @@ def histograma(nombre):
     return jsonify(resultado)
 
 @app.route("/")
-def index():
+def home():
     return render_tamplate("index.html")
 
 if __name__ == "__main__":
