@@ -4,6 +4,7 @@ import sqlite3
 from flask_cors import CORS
 from collections import Counter
 from datetime import datetime
+from flask import Flask, render_template
 
 app = Flask(__name__,static_folder="static",template_folder="templates")
 CORS(app)
