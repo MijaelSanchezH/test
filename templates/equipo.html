@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial del Equipo</title>
+    <link rel="stylesheet" href="/static/css/log-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+</head>
+<body>
+    <header>
+        <img src="img/MINEDU-removebg-preview.png" alt="Logo MINEDU">
+        <h1>Historial de Eventos del Equipo</h1>
+    </header>
+
+    <div class="content">
+        <h2 id="titulo-equipo">Equipo: </h2>
+        <canvas id="estadoChart" width="450" height="200" style="max-width: 100%; margin: 0 auto;"></canvas>
+
+        <script>
+            const ctxEstado = document.getElementById('estadoChart').getContext('2d');
+
+            const estadoChart = new Chart(ctxEstado, {
+                type: 'line',
+                data: {
+                    labels: Array.from({ length: 30 }, (_, i) => i + 1),
+                    datasets: [{
+                        label: 'Estado del equipo (0-3)',
+                        data: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+                        fill: false,
+                        borderColor: '#1976d2',
+                        tension: 0.2,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 4,
+                            ticks: {
+                                callback: function(value) {
+                                    switch(value) {
+                                        case 3: return 'Operativo';
+                                        case 2: return 'Stand-by';
+                                        case 1: return 'Alarma';
+                                        case 0: return 'No operativo';
+                                    }
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Estado'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Día del mes'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: true },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const estado = context.raw;
+                                    let texto = '';
+                                    switch (estado) {
+                                        case 3: texto = 'Operativo'; break;
+                                        case 2: texto = 'Stand-by'; break;
+                                        case 1: texto = 'Con Alarma'; break;
+                                        case 0: texto = 'No Operativo'; break;
+                                    }
+                                    return `Estado: ${texto} (${estado})`;
+                                }
+                            }
+                        },
+                        zoom: {
+                            pan: {
+                                enabled: true,
+                                mode: 'x',
+                            },
+                            zoom: {
+                                wheel: {
+                                    enabled: true
+                                },
+                                pinch: {
+                                    enabled: true
+                                },
+                                mode: 'x'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <h2>📊 Frecuencia de Eventos - Julio 2025</h2>
+        <canvas id="eventChart" width="450" height="200" style="max-width: 700px; margin: 0 auto;"></canvas>
+        <script src="/static/js/histograma.js"></script>
+        
+        <h2>Historial de Eventos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha-hora</th>
+                    <th>Evento</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-historial">
+                <!-- Filas dinámicas -->
+            </tbody>
+        </table>
+
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="index.html">← Volver al panel principal</a>
+        </p>
+
+        <h2>🔎 Leyenda de Términos</h2>
+        <ul style="max-width: 700px; margin: 0 auto; line-height: 1.6;">
+            <li><strong>Operativo</strong>: El equipo funciona sin problemas.</li>
+            <li><strong>Stand-by</strong>: El equipo está listo para operar apenas se requiera.</li>
+            <li><strong>Off</strong>: Equipo apagado.</li>
+            <li><strong>Alarmado</strong>: Equipo operando y alarmado.</li>
+            <li><strong>Encendido automático</strong>: El equipo se activó según programación.</li>
+            <li><strong>Atendido</strong>: Se atendió el equipo. La alarma ya no se muestra en el equipo.</li>
+        </ul>
+    </div>
+
+    <script src="/static/js/equipo.js"></script>
+</body>
+</html>

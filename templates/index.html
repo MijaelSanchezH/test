@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Datos - MINEDU</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+
+<body>
+    <header>
+            <img src="/static/img/MINEDU-removebg-preview.png" alt="Logo MINEDU">
+            <h1>Centro de Datos - MINEDU</h1>
+    </header>
+
+    <div class="content">
+        <div class="image-container">
+            <img src="/static/img/cdp.png" alt="Vista del Centro de Datos de MINEDU">
+        </div>
+
+        <h2>Estado de Equipos de Aire Acondicionado</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sala</th>
+                    <th>Equipo</th>
+                    <th>Temperatura</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tabla-equipos">
+                <!-- Aquí se insertarán las filas dinámicamente -->
+            </tbody>
+        </table>
+
+        <h2>🔎 Leyenda de Términos</h2>
+        <ul style="max-width: 700px; margin: 0 auto; line-height: 1.6;">
+            <li><strong>Operativo</strong>: El equipo funciona sin problemas.</li>
+            <li><strong>Stand-by</strong>: El equipo está listo para operar apenas se requiera.</li>
+            <li><strong>Off</strong>: Equipo apagado.</li>
+            <li><strong>Alarmado</strong>: Equipo aperando y alarmado.</li>
+            <li><strong>Encendido automático</strong>: El equipo se activó según programación.</li>
+        </ul>
+
+    </div>    
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
