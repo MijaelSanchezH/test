@@ -58,6 +58,11 @@ def histograma(nombre):
 def equipo(nombre):
     return render_template("equipo.html")
 
+@app.route("/equipo.html")
+def equipo_html():
+    return render_template("equipo.html")
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
